@@ -1,0 +1,47 @@
+name: Monica
+version: "4.1.2-1"
+slug: monica
+description: Monica 4 personal relationship manager, built on the official monica:4.1.2-apache image
+url: https://github.com/monicahq/monica
+arch:
+  - amd64
+  - aarch64
+startup: application
+boot: auto
+init: true
+services:
+  - mysql:need
+ports:
+  80/tcp: 8181
+ports_description:
+  80/tcp: Monica web interface (point Nginx Proxy Manager here)
+watchdog: tcp://[HOST]:[PORT:80]
+options:
+  app_url: "https://monica.example.com"
+  force_url: true
+  trusted_proxies: "*"
+  disable_signup: true
+  db_host: core-mariadb
+  db_port: 3306
+  db_database: monica
+  db_username: monica
+  db_password: ""
+  mail_mailer: log
+schema:
+  app_url: url
+  force_url: bool
+  trusted_proxies: str
+  disable_signup: bool
+  db_host: str
+  db_port: port
+  db_database: str
+  db_username: str
+  db_password: password
+  mail_mailer: list(smtp|log|sendmail)
+  mail_host: str?
+  mail_port: port?
+  mail_username: str?
+  mail_password: password?
+  mail_encryption: list(tls|ssl)?
+  mail_from_address: email?
+  mail_from_name: str?
