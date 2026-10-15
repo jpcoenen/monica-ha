@@ -54,6 +54,12 @@ export APP_DISABLE_SIGNUP="$(opt disable_signup)"
 # Send Monica's own errors to the add-on log instead of a file in /data.
 export LOG_CHANNEL=stderr
 
+# Monica never sets a "locale" cookie, but its language detector reads one
+# without decrypting it. An encrypted "locale" cookie from another Laravel app
+# on the same domain then becomes the locale, and every page returns 500.
+# Without the cookie, guests get their browser language; users their own setting.
+export LANG_DETECTOR_COOKIE=false
+
 # The bundled MariaDB listens on a socket only (no network port).
 export DB_CONNECTION=mysql
 export DB_HOST=localhost

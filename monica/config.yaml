@@ -1,5 +1,5 @@
 name: Monica
-version: "4.1.2-3"
+version: "4.1.2-4"
 slug: monica
 description: Monica 4 personal relationship manager with a bundled MariaDB, built on the official monica:4.1.2-apache image
 url: https://github.com/jpcoenen/monica-ha
