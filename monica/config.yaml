@@ -1,16 +1,16 @@
 name: Monica
-version: "4.1.2-1"
+version: "4.1.2-2"
 slug: monica
-description: Monica 4 personal relationship manager, built on the official monica:4.1.2-apache image
-url: https://github.com/monicahq/monica
+description: Monica 4 personal relationship manager with a bundled MariaDB, built on the official monica:4.1.2-apache image
+url: https://github.com/jpcoenen/monica-ha
 arch:
   - amd64
   - aarch64
 startup: application
 boot: auto
 init: true
-services:
-  - mysql:need
+# Stop the add-on while HA makes a backup, so the database files are consistent.
+backup: cold
 ports:
   80/tcp: 8181
 ports_description:
@@ -21,22 +21,12 @@ options:
   force_url: true
   trusted_proxies: "*"
   disable_signup: true
-  db_host: core-mariadb
-  db_port: 3306
-  db_database: monica
-  db_username: monica
-  db_password: ""
   mail_mailer: log
 schema:
   app_url: url
   force_url: bool
   trusted_proxies: str
   disable_signup: bool
-  db_host: str
-  db_port: port
-  db_database: str
-  db_username: str
-  db_password: password
   mail_mailer: list(smtp|log|sendmail)
   mail_host: str?
   mail_port: port?

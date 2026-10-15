@@ -1,8 +1,8 @@
 # Monica 4 for Home Assistant
 
 A Home Assistant OS add-on that runs the official `monica:4.1.2-apache` image
-([monicahq/monica](https://github.com/monicahq/monica), last 4.x release), with its
-database in the MariaDB add-on and HTTPS from Nginx Proxy Manager.
+([monicahq/monica](https://github.com/monicahq/monica), last 4.x release), with
+MariaDB bundled inside the add-on and HTTPS from Nginx Proxy Manager.
 
 ## Install
 
@@ -11,5 +11,5 @@ database in the MariaDB add-on and HTTPS from Nginx Proxy Manager.
 Or by hand: Settings → Add-ons → Add-on Store → ⋮ → **Repositories**, add
 `https://github.com/jpcoenen/monica-ha`, then install **Monica** from the store.
 
-Setup (MariaDB, options, Nginx Proxy Manager, backups) is in
+Setup (options, Nginx Proxy Manager, backups) is in
 [`monica/DOCS.md`](monica/DOCS.md), also shown on the add-on's Documentation tab.
