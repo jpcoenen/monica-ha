@@ -9,9 +9,11 @@ RUN set -ex; \
     rm -rf /var/lib/apt/lists/* /var/lib/mysql/*
 
 COPY run.sh /usr/local/bin/ha-run.sh
-RUN chmod a+x /usr/local/bin/ha-run.sh
+COPY apache-ha-foreground /usr/local/bin/apache-ha-foreground
+RUN chmod a+x /usr/local/bin/ha-run.sh /usr/local/bin/apache-ha-foreground
 
 # ha-run.sh reads the add-on options, starts MariaDB and the scheduler, then
-# hands over to the image's own entrypoint (migrations, Passport keys) and Apache.
+# hands over to the image's own entrypoint (migrations, Passport keys).
+# apache-ha-foreground fixes storage/ ownership and starts Apache.
 ENTRYPOINT ["/usr/local/bin/ha-run.sh"]
-CMD ["apache2-foreground"]
+CMD ["apache-ha-foreground"]

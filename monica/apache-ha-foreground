@@ -1,0 +1,10 @@
+#!/bin/bash
+# Runs after the official entrypoint has done its work (migrations, Passport keys,
+# caches) as root, right before Apache starts. The name has to start with
+# "apache": the entrypoint only runs that setup when its command does.
+set -euo pipefail
+
+# Anything the setup created in storage/ is owned by root; Apache runs as www-data.
+chown -R www-data:www-data "$(readlink -f "${MONICA_DIR:-/var/www/html}/storage")"
+
+exec "${APACHE_FOREGROUND:-apache2-foreground}" "$@"

@@ -51,6 +51,9 @@ export APP_FORCE_URL="$(opt force_url)"
 export APP_TRUSTED_PROXIES="$(opt trusted_proxies)"
 export APP_DISABLE_SIGNUP="$(opt disable_signup)"
 
+# Send Monica's own errors to the add-on log instead of a file in /data.
+export LOG_CHANNEL=stderr
+
 # The bundled MariaDB listens on a socket only (no network port).
 export DB_CONNECTION=mysql
 export DB_HOST=localhost
